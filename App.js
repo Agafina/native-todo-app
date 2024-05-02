@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,SafeAreaView ,Text, View, FlatList } from 'react-native';
+import { StyleSheet,SafeAreaView ,Text, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from './components/Header';
 import TodoForm from './components/TodoForm';
 import { useState } from 'react';
@@ -20,15 +20,23 @@ export default function App() {
     }
 
     const handleAdd = (text) => {
-      setTodos((prevTodos) => {
-        return [{
-          text: text , key: Math.random().toString()
-        },
-        ...prevTodos
-      ]
-      })
+      if(text.lenght >3){
+
+        setTodos((prevTodos) => {
+          return [{
+            text: text , key: Math.random().toString()
+          },
+          ...prevTodos
+        ]
+        })
+      }else{
+        Alert.alert('OPPS', 'Todo is too Short must be atleast 4 chars', [
+          {text: 'understood'}
+        ])
+      }
     }
   return (
+   <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
       <SafeAreaView style={styles.container}>
         <View>
           <Header />
@@ -45,6 +53,7 @@ export default function App() {
             />
         </View>
       </SafeAreaView>
+      </TouchableWithoutFeedback>
   );
 }
 
