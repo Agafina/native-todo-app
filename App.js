@@ -20,7 +20,7 @@ export default function App() {
     }
 
     const handleAdd = (text) => {
-      if(text.lenght >3){
+      if(text.length > 3){
 
         setTodos((prevTodos) => {
           return [{
