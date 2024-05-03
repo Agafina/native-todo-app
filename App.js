@@ -5,6 +5,7 @@ import TodoForm from './components/TodoForm';
 import { useState } from 'react';
 import TodoItems from './components/TodoItems';
 
+
 export default function App() {
 
   const [todos, setTodos] = useState([
@@ -44,7 +45,7 @@ export default function App() {
         <View>
           <TodoForm handleAdd={handleAdd} />
         </View>
-        <View>
+        <View style={styles.list}>
             <FlatList 
             data={todos}
              renderItem={({ item }) => (
@@ -62,4 +63,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  list:{
+    flex:1,
+    marginTop:20
+  }
 });
